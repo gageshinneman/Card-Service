@@ -10,3 +10,6 @@ How to receive data:
 Create something along the lines of: ifstream ReadServiceFile("service.txt");
 - string data;
 - getline(ReadServiceFile, data);
+
+If the decks' cutoff point has been reached, the microservice will print an alert. The main program can then choose to either 
+request a new number of decks to be made or end the microservice.
