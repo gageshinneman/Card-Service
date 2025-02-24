@@ -85,7 +85,7 @@ string getAction(){
     size_t pos = action.find("action: "); //reads the string after "action: ", extracts it
     if (pos != string::npos) {
         action = action.substr(pos + 8);
-        cout << "Action found" << endl;
+        cout << "Action found: " << action << endl;
         ReadServiceFile.close();
 
         ofstream ClearServiceFile("service.txt", ios::trunc); //clears file line
@@ -111,8 +111,12 @@ int main(){
         int deckLength = numDecks * 52;
 
         //repeats unless the response is end or numDecks which means the program is requesting new decks
-        while(response != "end" && response.find("numDecks: ") == string::npos){ 
+        while(response.find("numDecks: ") == string::npos){ 
             response = getAction(); //reads from the terminal to get the given action
+            if(response == "end"){
+                return 0;
+            }
+            //cout << "response: " << response << endl;
             if(response == "draw"){
                 pickCard(decks);
                 checkSize(decks, deckLength); //checks to see if the cut off point has been met
